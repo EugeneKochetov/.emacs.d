@@ -1,31 +1,23 @@
+;;; Base init file.
+;;; Only bootstraping actions are performed here.
+;;; Configuration is located in org file.
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
+(require 'package)
+
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+	("melpa" . "https://melpa.org/packages/")
+	("org" . "https://orgmode.org/elpa/")))
+
 (package-initialize)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (adwaita)))
- '(package-archives
-   (quote
-    (("gnu" . "https://elpa.gnu.org/packages/")
-     ("melpa" . "https://melpa.org/packages/")
-     ("org" . "https://orgmode.org/elpa/"))))
- '(package-selected-packages (quote (org)))
- '(c-basic-offset 8)
- '(column-number-mode t)
- '(menu-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
 
-(global-whitespace-mode t)
-(show-paren-mode 1)
+(org-babel-load-file (expand-file-name "~/.emacs.d/init-el.org"))
+
+(setq custom-file "~/.emacs.d/custom.el")
+(if (file-exists-p custom-file)
+    (load custom-file))
