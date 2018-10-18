@@ -12,12 +12,24 @@
 
 * Themes
 #+BEGIN_SRC emacs-lisp
-(load-theme 'tsdh-dark)
+(load-theme 'misterioso)
+#+END_SRC
+
+
+* Git
+
+** magit
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+:ensure t
+:bind ("C-x g" . magit-status))
 #+END_SRC
 
 
 * Unsorted
 #+BEGIN_SRC emacs-lisp
+(use-package command-log-mode
+:ensure t)
 (setq c-basic-offset 8)
 (column-number-mode)
 (menu-bar-mode 0)
