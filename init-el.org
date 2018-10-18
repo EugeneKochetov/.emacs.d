@@ -1,3 +1,5 @@
+#+STARTUP: content
+
 * Custom Shortcuts
 ** Org
 #+BEGIN_SRC emacs-lisp
@@ -7,11 +9,19 @@
 (global-set-key "\C-cb" 'org-switchb)
 #+END_SRC
 
+
+* Themes
+#+BEGIN_SRC emacs-lisp
+(load-theme 'tsdh-dark)
+#+END_SRC
+
+
 * Unsorted
 #+BEGIN_SRC emacs-lisp
 (setq c-basic-offset 8)
 (column-number-mode)
 (menu-bar-mode 0)
+(tool-bar-mode 0)
 (global-whitespace-mode)
 (show-paren-mode)
 #+END_SRC
