@@ -1,0 +1,28 @@
+#+STARTUP: content
+
+* Default Workplace
+  This file contains default workplace settings and definitions.
+  Setting in this file may be overriden by ~/.emacs.d/workplace-el.org
+  file.
+
+** Variables
+   #+BEGIN_SRC emacs-lisp
+   (setq my-org-location "~/org")
+   #+END_SRC
+
+** Different stuff
+   #+BEGIN_SRC emacs-lisp
+   (setq c-default-style "bsd"
+         c-basic-offset 4)
+   (custom-set-variables '(tab-stop-list (number-sequence 4 120 4)))
+   (setq-default indent-tabs-mode nil)
+   (setq-default tab-width 4)
+   (defvaralias 'c-basic-offset 'tab-width)
+   (defvaralias 'cperl-indent-level 'tab-width)
+   ;; don't indent "case" branch in "switch" according to coding style
+   (add-hook 'c-mode-common-hook
+             (lambda ()
+                     (c-set-offset 'case-label '0)))
+   ;; show whitespace characters by default
+   ;; (global-whitespace-mode)
+   #+END_SRC

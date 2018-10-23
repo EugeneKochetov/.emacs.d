@@ -1,5 +1,18 @@
 #+STARTUP: content
 
+* Workplaces
+  This section must be the first one since it contains some definitions required for further sections.
+  #+BEGIN_SRC emacs-lisp
+  ;; Load default workplace file and then custom one if exists.
+  (org-babel-load-file (expand-file-name "~/.emacs.d/workplace-el.default.org"))
+  (if (file-exists-p "~/.emacs.d/workplace-el.org")
+    (org-babel-load-file (expand-file-name "~/.emacs.d/workplace-el.org")))
+
+  (if (file-exists-p (concat my-org-location "/index.org"))
+    (find-file (concat my-org-location "/index.org")))
+  (setq org-agenda-files (list my-org-location))
+  #+END_SRC
+
 * Custom Shortcuts
 ** Org
 #+BEGIN_SRC emacs-lisp
@@ -60,15 +73,12 @@
 #+BEGIN_SRC emacs-lisp
 (use-package command-log-mode
   :ensure t)
-(setq c-basic-offset 8)
 ;; show column number in mode line
 (column-number-mode)
 ;; disable menu
 (menu-bar-mode 0)
 ;; disable toolbar
 (tool-bar-mode 0)
-;; show whitespace characters by default
-(global-whitespace-mode)
 ;; show matching parenthesis
 (show-paren-mode)
 ;; overwrite selected text
@@ -82,6 +92,7 @@
     (scroll-bar-mode 0))
 ;; do not blink cursor
 (blink-cursor-mode 0)
+(setq inhibit-startup-screen t)
 
 ;; Comment/uncomment current line
 (defun comment-or-uncomment-region-or-line ()

@@ -1,3 +1,9 @@
 elpa
 *~
 auto-save-list
+\#*\#
+custom.el
+init-el.el
+workplace-el.default.el
+workplace-el.el
+workplace-el.org
