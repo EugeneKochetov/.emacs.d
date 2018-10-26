@@ -3,10 +3,10 @@
 * Workplaces
   This section must be the first one since it contains some definitions required for further sections.
   #+BEGIN_SRC emacs-lisp
-  ;; Load default workplace file and then custom one if exists.
-  (org-babel-load-file (expand-file-name "~/.emacs.d/workplace-el.default.org"))
+  ;; Load custom workplace file if it exists. Load default workplace otherwise.
   (if (file-exists-p "~/.emacs.d/workplace-el.org")
-    (org-babel-load-file (expand-file-name "~/.emacs.d/workplace-el.org")))
+      (org-babel-load-file (expand-file-name "~/.emacs.d/workplace-el.org"))
+      (org-babel-load-file (expand-file-name "~/.emacs.d/workplace-el.default.org")))
 
   (if (file-exists-p (concat my-org-location "/index.org"))
     (find-file (concat my-org-location "/index.org")))
