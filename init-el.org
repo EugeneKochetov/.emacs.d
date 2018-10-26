@@ -3,109 +3,109 @@
 * Workplaces
   This section must be the first one since it contains some definitions required for further sections.
   #+BEGIN_SRC emacs-lisp
-  ;; Load custom workplace file if it exists. Load default workplace otherwise.
-  (if (file-exists-p "~/.emacs.d/workplace-el.org")
-      (org-babel-load-file (expand-file-name "~/.emacs.d/workplace-el.org"))
+    ;; Load custom workplace file if it exists. Load default workplace otherwise.
+    (if (file-exists-p "~/.emacs.d/workplace-el.org")
+        (org-babel-load-file (expand-file-name "~/.emacs.d/workplace-el.org"))
       (org-babel-load-file (expand-file-name "~/.emacs.d/workplace-el.default.org")))
 
-  (if (file-exists-p (concat my-org-location "/index.org"))
-    (find-file (concat my-org-location "/index.org")))
-  (setq org-agenda-files (list my-org-location))
+    (if (file-exists-p (concat my-org-location "/index.org"))
+        (find-file (concat my-org-location "/index.org")))
+    (setq org-agenda-files (list my-org-location))
   #+END_SRC
 
 * Custom Shortcuts
 ** Org
-#+BEGIN_SRC emacs-lisp
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-cb" 'org-switchb)
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key "\C-cl" 'org-store-link)
+     (global-set-key "\C-ca" 'org-agenda)
+     (global-set-key "\C-cc" 'org-capture)
+     (global-set-key "\C-cb" 'org-switchb)
+   #+END_SRC
 
 * Themes
-#+BEGIN_SRC emacs-lisp
-(load-theme 'misterioso)
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp
+    (load-theme 'misterioso)
+  #+END_SRC
 * Git
 
 ** magit
-#+BEGIN_SRC emacs-lisp
-(use-package magit
-:ensure t
-:bind ("C-x g" . magit-status))
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package magit
+       :ensure t
+       :bind ("C-x g" . magit-status))
+   #+END_SRC
 
 * Editing
 
 ** Undo tree
-#+BEGIN_SRC emacs-lisp
-(use-package undo-tree
-  :ensure t
-  :diminish undo-tree-mode
-  :init
-  (global-undo-tree-mode))
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package undo-tree
+       :ensure t
+       :diminish undo-tree-mode
+       :init
+       (global-undo-tree-mode))
+   #+END_SRC
 
 ** Hungry delete
-#+BEGIN_SRC emacs-lisp
-(use-package hungry-delete
-  :ensure t
-  :diminish hungry-delete-mode
-  :config (global-hungry-delete-mode))
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package hungry-delete
+       :ensure t
+       :diminish hungry-delete-mode
+       :config (global-hungry-delete-mode))
+   #+END_SRC
 
 ** Smart parens
-#+BEGIN_SRC emacs-lisp
-(use-package smartparens
-  :ensure t
-  :config (smartparens-global-mode t))
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package smartparens
+       :ensure t
+       :config (smartparens-global-mode t))
+   #+END_SRC
 
 ** Smooth scroll
-#+BEGIN_SRC emacs-lisp
-(use-package smooth-scrolling
-  :ensure t
-  :config
-  (smooth-scrolling-mode 1))
-#+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (use-package smooth-scrolling
+       :ensure t
+       :config
+       (smooth-scrolling-mode 1))
+   #+END_SRC
 
 * Unsorted
-#+BEGIN_SRC emacs-lisp
-(use-package command-log-mode
-  :ensure t)
-;; show column number in mode line
-(column-number-mode)
-;; disable menu
-(menu-bar-mode 0)
-;; disable toolbar
-(tool-bar-mode 0)
-;; show matching parenthesis
-(show-paren-mode)
-;; overwrite selected text
-(delete-selection-mode)
-;; hightlight current line
-(global-hl-line-mode 1)
-;; display current function in mode line
-(which-function-mode)
-;; disable scroll bars
-(if (fboundp 'scroll-bar-mode)
-    (scroll-bar-mode 0))
-;; do not blink cursor
-(blink-cursor-mode 0)
-(setq inhibit-startup-screen t)
+  #+BEGIN_SRC emacs-lisp
+    (use-package command-log-mode
+      :ensure t)
+    ;; show column number in mode line
+    (column-number-mode)
+    ;; disable menu
+    (menu-bar-mode 0)
+    ;; disable toolbar
+    (tool-bar-mode 0)
+    ;; show matching parenthesis
+    (show-paren-mode)
+    ;; overwrite selected text
+    (delete-selection-mode)
+    ;; hightlight current line
+    (global-hl-line-mode 1)
+    ;; display current function in mode line
+    (which-function-mode)
+    ;; disable scroll bars
+    (if (fboundp 'scroll-bar-mode)
+        (scroll-bar-mode 0))
+    ;; do not blink cursor
+    (blink-cursor-mode 0)
+    (setq inhibit-startup-screen t)
 
-;; Comment/uncomment current line
-(defun comment-or-uncomment-region-or-line ()
-  "Comments or uncomments the region or the current line if there's no active region."
-  (interactive)
-  (let (beg end)
-    (if (region-active-p)
-        (setq beg (region-beginning) end (region-end))
-      (setq beg (line-beginning-position) end (line-end-position)))
-    (comment-or-uncomment-region beg end)
-    (next-line)))
-(global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
+    ;; Comment/uncomment current line
+    (defun comment-or-uncomment-region-or-line ()
+      "Comments or uncomments the region or the current line if there's no active region."
+      (interactive)
+      (let (beg end)
+        (if (region-active-p)
+            (setq beg (region-beginning) end (region-end))
+          (setq beg (line-beginning-position) end (line-end-position)))
+        (comment-or-uncomment-region beg end)
+        (next-line)))
+    (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region-or-line)
 
-(use-package diminish
-  :ensure t)
-#+END_SRC
+    (use-package diminish
+      :ensure t)
+  #+END_SRC
