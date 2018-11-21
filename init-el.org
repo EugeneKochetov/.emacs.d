@@ -69,6 +69,10 @@
        (smooth-scrolling-mode 1))
    #+END_SRC
 
+* Performance
+  #+BEGIN_SRC emacs-lisp
+    (setq inhibit-compacting-font-caches t)
+  #+END_SRC
 * Unsorted
   #+BEGIN_SRC emacs-lisp
     (use-package command-log-mode
