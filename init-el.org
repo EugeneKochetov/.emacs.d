@@ -73,6 +73,11 @@
   #+BEGIN_SRC emacs-lisp
     (setq inhibit-compacting-font-caches t)
   #+END_SRC
+* Learning
+  #+BEGIN_SRC emacs-lisp
+    ;;(use-package org-drill
+    ;;  :ensure org-plus-contrib)
+  #+END_SRC
 * Unsorted
   #+BEGIN_SRC emacs-lisp
     (use-package command-log-mode
@@ -117,4 +122,11 @@
       :ensure t
       :diminish which-key-mode
       :config (which-key-mode))
+
+    (setq tramp-default-method "ssh")
+
+    (setq plantuml-default-exec-mode 'jar)
+    (use-package plantuml-mode
+      :ensure t)
+    (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
   #+END_SRC
