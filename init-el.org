@@ -129,4 +129,6 @@
     (use-package plantuml-mode
       :ensure t)
     (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+    (use-package typescript-mode
+      :ensure t)
   #+END_SRC
