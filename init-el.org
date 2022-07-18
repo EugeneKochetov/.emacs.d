@@ -128,10 +128,12 @@
     (use-package diminish
       :ensure t)
 
-    (use-package which-key
-      :ensure t
-      :diminish which-key-mode
-      :config (which-key-mode))
+    (if (version< emacs-version "24.4")
+        (message "No which-key before 24.4")
+        (use-package which-key
+                     :ensure t
+                     :diminish which-key-mode
+                     :config (which-key-mode)))
 
     (setq tramp-default-method "ssh")
 
