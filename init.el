@@ -16,6 +16,7 @@
   (package-install 'use-package))
 (require 'use-package)
 
+(require 'org)
 (org-babel-load-file (expand-file-name "~/.emacs.d/init-el.org"))
 
 (setq custom-file "~/.emacs.d/custom.el")
